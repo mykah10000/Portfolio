@@ -3,17 +3,19 @@ const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.height = window.innerHeight*.9;
 }
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 const numCircles = 12;
 let angle = 0;
+let scaleNum = 0.5;
+let count =0;
 
 //sphere locations
 const dots = [];
 for (let sphereY = .1;sphereY<Math.PI;sphereY += Math.PI/15){
-  for(let sphereX = 0;sphereX<Math.PI *2;sphereX +=Math.PI/10){
+  for(let sphereX = 0;sphereX<Math.PI *2;sphereX +=Math.PI/12){
       dots.push({sphereY,sphereX})
   }
 }
@@ -41,13 +43,13 @@ function draw(){
     let circleRadius = 5* scale;
     //drawing spheres
     ctx.beginPath();
-    ctx.shadowBlur = 5;
+    ctx.shadowBlur = 8;
     ctx.shadowColor = "white";
     ctx.arc(screenX,screenY,circleRadius* scale,0,Math.PI*2);
     ctx.fillStyle = "#00FF00";
     ctx.fill();
 }
-  angle += .01;
+angle += 0.012;
   requestAnimationFrame(draw);
 }
 draw();

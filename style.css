@@ -4,15 +4,16 @@
     background-color: #0D0D0D;
 }
 header{
-    text-align: center;
     font-size: 100px;
     font-weight: bold;
     padding-top: 1rem;
-    text-shadow: 0 0 8px #0D0D0D;
-    text-shadow: 0 0 5px #00FF00;
 }
 .top-div{
-
+    text-align: center;
+}
+nav{
+    display: block;
+    max-width: 100%;
 }
 .nav-div{
     display: flex;
@@ -26,6 +27,9 @@ header{
     background-color: #0D0D0D;
     text-shadow: 0 0 8px #00FF00;
 }
+a{
+    text-decoration: none;
+}
 .nav-div a{
     flex: 1;
     text-align: center;
@@ -33,7 +37,16 @@ header{
     border-right: 1px solid white;
     border-left: 1px solid white;
     padding: 1rem;
-    text-decoration: none;
+}
+canvas{
+    display: block;
+    max-width: 100%;
 }
 
-
+.glow{
+    text-shadow: 0 0 8px #00FF00;
+}
+.projects-button{
+    text-align: center;
+    font-size: 2rem;
+}
