@@ -22,11 +22,11 @@ header{
     color:#00FF00;
     text-shadow: 0 0 8px white;
 }
-.nav-div div:not(.current-page) {
+.nav-div a:not(.current-page) {
     background-color: #0D0D0D;
     text-shadow: 0 0 8px #00FF00;
 }
-.nav-div div{
+.nav-div a{
     flex: 1;
     text-align: center;
     font-size: 1.5rem;
