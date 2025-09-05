@@ -1,9 +1,11 @@
 //disappearing curser
 const letter =document.getElementById("letter");
+const download = document.getElementById("download-button")
 let visible = true;
 setInterval(() => {
   visible = !visible;
   letter.style.visibility = visible ? "visible" : "hidden";
+  download.style.textDecoration = visible ? "underline" : "none";
 }, 500);
 
 const canvas = document.getElementById("sphereCanvas");
