@@ -2,14 +2,20 @@
     font-family: 'Fira Code', monospace;
     color: white;
     background-color: #0D0D0D;
+    
+    text-shadow: 0 0 8px #00FF00;
+}
+html {
+  scroll-behavior: smooth;
 }
 header{
     font-size: 100px;
     font-weight: bold;
     padding-top: 1rem;
+    text-align:center;
 }
-.top-div{
-    text-align: center;
+h1{
+    text-align:center;
 }
 nav{
     display: block;
@@ -22,10 +28,6 @@ nav{
 .current-page{
     color:#00FF00;
     text-shadow: 0 0 8px white;
-}
-.nav-div a:not(.current-page) {
-    background-color: #0D0D0D;
-    text-shadow: 0 0 8px #00FF00;
 }
 a{
     text-decoration: none;
@@ -42,11 +44,16 @@ canvas{
     display: block;
     max-width: 100%;
 }
-
-.glow{
-    text-shadow: 0 0 8px #00FF00;
+.section-header{
+    font-size: 4rem;
+    margin: 0;
 }
-.projects-button{
-    text-align: center;
+.about{
     font-size: 2rem;
+    text-indent: 60px;
+}
+.resume-download{
+    text-align:center;
+    font-size: 2rem;
+    padding-bottom: 6rem;
 }

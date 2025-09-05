@@ -1,3 +1,11 @@
+//disappearing curser
+const letter =document.getElementById("letter");
+let visible = true;
+setInterval(() => {
+  visible = !visible;
+  letter.style.visibility = visible ? "visible" : "hidden";
+}, 500);
+
 const canvas = document.getElementById("sphereCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -53,3 +61,36 @@ angle += 0.012;
   requestAnimationFrame(draw);
 }
 draw();
+
+//resume color switch
+const img = new Image();
+img.src = "Micah Luck Resume.jpg";
+img.onload = function(){
+  const resume = document.getElementById("resume1");
+  const pic = resume.getContext("2d");
+  resume.width = img.width;
+  resume.height = img.height;
+  pic.imageSmoothingEnabled = true;
+  pic.imageSmoothingQuality = "high";
+  pic.drawImage(img, 0, 0, img.width, img.height);
+  const imgData = pic.getImageData(0,0,resume.width, resume.height);
+  const data = imgData.data;
+  const target = {r: 255, g: 255, b: 255};
+  const newColor = {r: 13, g: 13, b: 13};
+  for(let i = 0; i<data.length; i+=4){
+    const r = data[i];
+    const g = data[i+1];
+    const b = data[i+2]
+    if (Math.abs(r-target.r)<60 && Math.abs(g-target.g)<60 && Math.abs(b-target.b)<60){
+      data[i] = newColor.r;
+      data[i+1] = newColor.g;
+      data[i+2] = newColor.b;
+    }
+    else if (r<60 && g<60 && b<60){
+      data[i] = 255;
+      data[i+1] = 255;
+      data[i+2] = 255;
+    }
+  }
+    pic.putImageData(imgData,0,0);
+}
