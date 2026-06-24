@@ -2,7 +2,7 @@
     font-family: 'Fira Code', monospace;
     color: white;
     background-color: #0D0D0D;
-    
+
     text-shadow: 0 0 8px #00FF00;
 }
 html {
@@ -69,21 +69,89 @@ canvas{
     margin-top: 2rem;
 }
 .osrsMarket{
-    display: flex;
-    flex-direction: row;
+    overflow: hidden;
 }
 .marketImg{
-    width: 50vw;
-
+    float: left;
+    width: 35vw;
+    max-height: 38vh;
+    object-fit: cover;
+    object-position: top;
+    margin-right: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 .projectHeader{
     text-align: center;
 }
 .marketDescription{
-    width: 50vw;
+    /* no explicit width — text flows around the floated image */
 }
 .projectDescription{
     text-indent: 60px;
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+@media (max-width: 900px) {
+    header {
+        font-size: 3.5rem;
+    }
+    .nav-div a {
+        font-size: 1.2rem;
+        padding: 0.6rem 0.3rem;
+    }
+    .section-header {
+        font-size: 2.5rem;
+    }
+    .about {
+        font-size: 1.2rem;
+    }
+    .contact-div {
+        font-size: 1.2rem;
+    }
+    .resume-download {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        font-size: 2rem;
+    }
+    .nav-div a {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.1rem;
+    }
+    .section-header {
+        font-size: 1.8rem;
+    }
+    .about {
+        font-size: 1rem;
+        text-indent: 20px;
+    }
+    .introduction {
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    .contact-div {
+        font-size: 1rem;
+    }
+    .resume-download {
+        font-size: 1rem;
+    }
+    .marketImg {
+        float: none;
+        width: 100%;
+        max-height: none;
+        object-fit: contain;
+        margin-right: 0;
+    }
+    .projectDescription {
+        text-indent: 20px;
+        font-size: 0.9rem;
+    }
+    p[style*="font-size: 2rem"] {
+        font-size: 1rem !important;
+    }
 }

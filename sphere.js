@@ -21,6 +21,7 @@ const numCircles = 12;
 let angle = 0;
 let scaleNum = 0.5;
 let count =0;
+let animFrameId = null;
 
 //sphere locations
 const dots = [];
@@ -36,7 +37,10 @@ function draw(){
   ctx.fillRect(0,0,canvas.width, canvas.height);
   const cx = canvas.width/2;
   const cy = canvas.height/2;
-  const radius = 200;
+  // scale sphere to always fit the canvas at any size/aspect ratio
+  const radius = Math.min(canvas.width, canvas.height) * 0.3;
+  const perspective = radius * 1.5;
+  const dotBase = radius / 40;
 
   for(let p of dots){
     //polar to cartesian
@@ -47,10 +51,10 @@ function draw(){
     //rotation and scale
     const rotatedX = x * Math.cos(angle) - z * Math.sin(angle);
     const rotatedZ = x *Math.sin(angle) + z *Math.cos(angle);
-    const scale = 300/(300 +rotatedZ);
+    const scale = perspective/(perspective +rotatedZ);
     const screenX = cx +rotatedX *scale;
     const screenY = cy+ y *scale;
-    let circleRadius = 5* scale;
+    let circleRadius = dotBase* scale;
     //drawing spheres
     ctx.beginPath();
     ctx.shadowBlur = 8;
@@ -60,8 +64,26 @@ function draw(){
     ctx.fill();
 }
 angle += 0.012;
-  requestAnimationFrame(draw);
+  animFrameId = requestAnimationFrame(draw);
 }
+
+// pause animation when canvas is off-screen, resume instantly when visible
+const sphereObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (!animFrameId) {
+        draw();
+      }
+    } else {
+      if (animFrameId) {
+        cancelAnimationFrame(animFrameId);
+        animFrameId = null;
+      }
+    }
+  });
+}, { threshold: 0.01 });
+
+sphereObserver.observe(canvas);
 draw();
 
 //resume color switch
@@ -72,6 +94,8 @@ img.onload = function(){
   const pic = resume.getContext("2d");
   resume.width = img.width;
   resume.height = img.height;
+  resume.style.maxWidth = "100%";
+  resume.style.height = "auto";
   pic.imageSmoothingEnabled = true;
   pic.imageSmoothingQuality = "high";
   pic.drawImage(img, 0, 0, img.width, img.height);
